@@ -43,6 +43,16 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
     return finalPrice; 
   };
 
+  const cartSummary = event => {
+    event.preventDefault();
+    console.log('Summary');
+    console.log('============');
+    console.log('Name:', title);
+    console.log('Price:', getPrice());
+    console.log('Size:', currentSize);
+    console.log('Color:', currentColor);
+  };
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -78,7 +88,7 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
             </ul>
           </div>
           <Button className={styles.button}>
-            <span className="fa fa-shopping-cart" />
+            <span className="fa fa-shopping-cart" onClick={cartSummary} />
           </Button>
         </form>
       </div>
