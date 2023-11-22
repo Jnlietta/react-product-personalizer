@@ -8,8 +8,9 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
 
   const [currentColor, setCurrentColor] = useState(colors[0]);
   const [currentSize, setCurrentSize] = useState(sizes[0].name);
+  const [currentAddPrice, setCurrentAddPrice] = useState (sizes[0].additionalPrice);
 
-  //console.log(currentColor, currentSize);
+  //console.log(currentColor, currentSize, currentAddPrice);
 
   const prepareColorClassName = colorName => {
     return styles['color' + colorName[0].toUpperCase() + colorName.substr(1).toLowerCase()];
@@ -28,6 +29,20 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
       setCurrentColor(colorName);
     }
   };
+
+  const getPrice = () => {
+    let sizeFound = sizes.find((element) => element.name === currentSize);
+    //console.log('found', sizeFound);
+
+    let priceToAdd = sizeFound.additionalPrice;
+    //console.log('priceAdd', priceToAdd);
+
+    const finalPrice = basePrice + priceToAdd;
+    //console.log('final',finalPrice);
+    
+    return finalPrice; 
+  };
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -39,7 +54,7 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
       <div>
         <header>
           <h2 className={styles.name}>{title}</h2>
-          <span className={styles.price}>Price: {basePrice}$</span>
+          <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
