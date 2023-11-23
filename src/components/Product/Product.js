@@ -1,7 +1,6 @@
 import styles from './Product.module.scss';
-import clsx from 'clsx';
-import Button from '../Button/Button';
 import ProductImage from '../ProductImage/ProductImage.js';
+import ProductForm from '../ProductForm/ProductForm.js';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -11,10 +10,6 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
   const [currentSize, setCurrentSize] = useState(sizes[0].name);
 
   //console.log(currentColor, currentSize);
-
-  const prepareColorClassName = colorName => {
-    return styles['color' + colorName[0].toUpperCase() + colorName.substr(1).toLowerCase()];
-  };
 
   const clickedSize = sizeName => {
     if(sizeName !== currentSize) {
@@ -61,31 +56,15 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
           <h2 className={styles.name}>{title}</h2>
           <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
-        <form>
-          <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>Sizes</h3>
-            <ul className={styles.choices}>
-              {sizes.map(size => 
-                <li key={size.name}>
-                  <button type="button" className={clsx(size.name === currentSize && styles.active)}  onClick={() => clickedSize(size.name)}>{size.name}</button>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>Colors</h3>
-            <ul className={styles.choices}>
-              {colors.map(color => 
-                <li key={color}>
-                  <button type="button" className={clsx(prepareColorClassName(color), color === currentColor && styles.active)} onClick={() => clickedColor(color)}/>
-                </li>
-              )}
-            </ul>
-          </div>
-          <Button className={styles.button}>
-            <span className="fa fa-shopping-cart" onClick={cartSummary} />
-          </Button>
-        </form>
+        <ProductForm 
+          colors={colors} 
+          sizes={sizes} 
+          currentColor={currentColor} 
+          currentSize={currentSize} 
+          clickedSize={clickedSize}
+          clickedColor={clickedColor}
+          cartSummary={cartSummary}
+          />
       </div>
     </article>
   )
