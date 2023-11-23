@@ -8,9 +8,8 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
 
   const [currentColor, setCurrentColor] = useState(colors[0]);
   const [currentSize, setCurrentSize] = useState(sizes[0].name);
-  const [currentAddPrice, setCurrentAddPrice] = useState (sizes[0].additionalPrice);
 
-  //console.log(currentColor, currentSize, currentAddPrice);
+  //console.log(currentColor, currentSize);
 
   const prepareColorClassName = colorName => {
     return styles['color' + colorName[0].toUpperCase() + colorName.substr(1).toLowerCase()];
