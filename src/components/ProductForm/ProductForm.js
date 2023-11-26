@@ -11,7 +11,7 @@ const ProductForm = ({ colors, sizes, currentColor, currentSize, clickedSize, cl
         return styles['color' + colorName[0].toUpperCase() + colorName.substr(1).toLowerCase()];
       };
 
-      console.log(prepareColorClassName);
+      //console.log(prepareColorClassName);
 
     return(
         <form>
@@ -43,8 +43,12 @@ const ProductForm = ({ colors, sizes, currentColor, currentSize, clickedSize, cl
 };
 
 ProductForm.propTypes = {
-    prepareColorClassName: PropTypes.func.isRequired,
     colors: PropTypes.array.isRequired,
     sizes: PropTypes.array.isRequired,
+    currentColor: PropTypes.string.isRequired, 
+    currentSize: PropTypes.string.isRequired,
+    clickedSize: PropTypes.func.isRequired,
+    clickedColor: PropTypes.func.isRequired,
+    cartSummary: PropTypes.func.isRequired
 }
 export default ProductForm;
