@@ -1,6 +1,7 @@
 import styles from './ProductForm.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
+import OptionSize from '../OptionSize/OptionSize';
 import PropTypes from 'prop-types';
 
 
@@ -14,17 +15,8 @@ const ProductForm = ({ colors, sizes, currentColor, currentSize, clickedSize, cl
       //console.log(prepareColorClassName);
 
     return(
-        <form>
-        <div className={styles.sizes}>
-          <h3 className={styles.optionLabel}>Sizes</h3>
-          <ul className={styles.choices}>
-            {sizes.map(size => 
-              <li key={size.name}>
-                <button type="button" className={clsx(size.name === currentSize && styles.active)}  onClick={() => clickedSize(size.name)}>{size.name}</button>
-              </li>
-            )}
-          </ul>
-        </div>
+      <form>
+        <OptionSize sizes={sizes} currentSize={currentSize} clickedSize={clickedSize} />
         <div className={styles.colors}>
           <h3 className={styles.optionLabel}>Colors</h3>
           <ul className={styles.choices}>
@@ -51,4 +43,5 @@ ProductForm.propTypes = {
     clickedColor: PropTypes.func.isRequired,
     cartSummary: PropTypes.func.isRequired
 }
+
 export default ProductForm;
