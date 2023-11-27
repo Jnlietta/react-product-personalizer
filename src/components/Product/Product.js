@@ -64,7 +64,7 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
           currentSize={currentSize} 
           clickedSize={clickedSize}
           clickedColor={clickedColor}
-          cartSummary={cartSummary}
+          onSubmit={cartSummary}
           />
       </div>
     </article>
