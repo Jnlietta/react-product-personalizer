@@ -25,7 +25,8 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
     }
   };
 
-  const getPrice = () => {
+
+  const price = useMemo(() => {
     let sizeFound = sizes.find((element) => element.name === currentSize);
     //console.log('found', sizeFound);
 
@@ -35,10 +36,8 @@ const Product = ({name, title, basePrice, colors, sizes}) => {
     const finalPrice = basePrice + priceToAdd;
     //console.log('final',finalPrice);
     
-    return finalPrice; 
-  };
-
-  const price = useMemo(() => {return getPrice()}, [currentSize]);
+    return finalPrice;
+  }, [currentSize]);
 
   const cartSummary = event => {
     event.preventDefault();
