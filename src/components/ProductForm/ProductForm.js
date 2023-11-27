@@ -11,8 +11,8 @@ const ProductForm = ({ colors, sizes, currentColor, currentSize, clickedSize, cl
       <form>
         <OptionSize sizes={sizes} currentSize={currentSize} clickedSize={clickedSize} />
         <OptionColor colors={colors} currentColor={currentColor} clickedColor={clickedColor} />
-        <Button className={styles.button}>
-          <span className="fa fa-shopping-cart" onClick={cartSummary} />
+        <Button className={styles.button} onClick={cartSummary}>
+          <span className="fa fa-shopping-cart"/>
         </Button>
       </form>
     );
